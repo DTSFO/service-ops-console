@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "hosts": [
+    {
+      "id": "app-host",
+      "name": "Application Host",
+      "description": "Replace with a user-managed host",
+      "control": { "mode": "local" }
+    }
+  ],
+  "groups": [
+    {
+      "id": "core",
+      "name": "Core Services",
+      "description": "Public entry points and platform services"
+    }
+  ],
+  "services": [
+    {
+      "id": "example-web",
+      "name": "Example Web",
+      "description": "Replace this invented entry with your own service",
+      "host": "app-host",
+      "group": "core",
+      "category": "app",
+      "url": "https://example.com/",
+      "related": [],
+      "control": { "type": "none" },
+      "health": {
+        "type": "http",
+        "url": "https://example.com/",
+        "method": "HEAD",
+        "expectedStatus": 200,
+        "timeoutMs": 5000,
+        "headersFromEnv": {}
+      },
+      "update": {
+        "current": { "type": "static", "version": "1.0.0" },
+        "source": { "type": "static", "label": "Configured by operator" }
+      }
+    }
+  ],
+  "tools": []
+}

@@ -1,0 +1,16 @@
+[Unit]
+Description=Back up Service Ops Console data and configuration
+Documentation=https://github.com/example/service-ops-console
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=-/etc/service-ops-console/backup.env
+ExecStart=/usr/local/libexec/service-ops-console-backup
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/etc/service-ops-console
+ReadWritePaths=/var/backups/service-ops-console

@@ -1,0 +1,20 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+.DS_Store
+.agents/*
+!.agents/skills/
+!.agents/skills/**
+.codex/
+.trellis/
+.ace-tool/
+.pi/
+.pi-subagents/
+
+# Operator-owned inventory (may contain private endpoints)
+inventory.local.json
+.service-ops-data/
+config/*.local.json

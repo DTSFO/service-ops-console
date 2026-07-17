@@ -1,0 +1,4 @@
+interface:
+  display_name: "Service Ops Console"
+  short_description: "Operate configured services safely through CLI or MCP"
+  default_prompt: "Use $service-ops-console-ops to inspect this deployment and perform only the service operation I explicitly request."

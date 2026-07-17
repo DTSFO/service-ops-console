@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "hosts": [
+    {
+      "id": "app-host",
+      "name": "Application Host",
+      "description": "Example local systemd host",
+      "control": { "mode": "local" }
+    },
+    {
+      "id": "remote-host",
+      "name": "Remote Host",
+      "description": "Example host reached through the separate SSH registry",
+      "control": { "mode": "ssh", "sshHostId": "app-host" }
+    }
+  ],
+  "groups": [
+    { "id": "core", "name": "Core Services", "description": "Managed applications" }
+  ],
+  "services": [
+    {
+      "id": "example-api",
+      "name": "Example API",
+      "description": "Illustrates structured systemd control and GitHub version checks",
+      "host": "app-host",
+      "group": "core",
+      "category": "app",
+      "url": "https://api.example.com/",
+      "related": [],
+      "control": { "type": "systemd", "name": "example-api" },
+      "health": {
+        "type": "command",
+        "command": ["service-ops-health-example-api"],
+        "timeoutMs": 5000,
+        "expectedExitCode": 0
+      },
+      "update": {
+        "current": { "type": "static", "version": "1.0.0" },
+        "source": { "type": "github", "repo": "example/example-api", "strategy": "release" },
+        "commandPolicy": {
+          "enabled": true,
+          "prefixes": ["service-ops-update-example-api"],
+          "patterns": []
+        },
+        "steps": [
+          { "type": "control", "action": "stop" },
+          { "type": "command", "command": "service-ops-update-example-api", "allow": true },
+          { "type": "control", "action": "start" }
+        ]
+      }
+    }
+  ],
+  "tools": []
+}

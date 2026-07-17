@@ -1,0 +1,27 @@
+[Unit]
+Description=Service Ops Console API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=service-ops
+Group=service-ops
+WorkingDirectory=/srv/service-ops-console
+EnvironmentFile=/etc/service-ops-console/service-ops-console.env
+EnvironmentFile=-/etc/service-ops-console/secrets.env
+Environment=HOME=/var/lib/service-ops-console
+ExecStart=/usr/bin/node /srv/service-ops-console/api/server.mjs
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/service-ops-console
+# Add reviewed deployment paths only when a configured local update helper must write them:
+# ReadWritePaths=/srv/example-service
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

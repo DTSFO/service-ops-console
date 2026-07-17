@@ -1,0 +1,15 @@
+{
+  "hosts": [
+    {
+      "id": "app-host",
+      "description": "Example host reached through an OpenSSH config alias",
+      "backend": "openssh",
+      "target": "service-ops-example",
+      "commandPolicy": {
+        "enabled": true,
+        "prefixes": ["systemctl status", "journalctl -u"],
+        "patterns": []
+      }
+    }
+  ]
+}

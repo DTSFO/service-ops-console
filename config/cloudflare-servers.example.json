@@ -1,0 +1,22 @@
+{
+  "servers": [
+    {
+      "id": "cloudflare-api",
+      "name": "Cloudflare API MCP",
+      "url": "https://mcp.example.com/mcp",
+      "credentialsPathEnv": "EXAMPLE_CLOUDFLARE_CREDENTIALS_PATH",
+      "credentialKey": "example-upstream",
+      "credentialNames": ["example-profile"],
+      "protocolVersion": "2025-06-18",
+      "timeoutMs": 10000,
+      "maximumResponseBytes": 1048576,
+      "capabilities": { "read": true, "write": false },
+      "toolPolicy": {
+        "search_documentation": "read",
+        "dns_record_create": "write",
+        "dns_record_update": "write",
+        "dns_record_delete": "write"
+      }
+    }
+  ]
+}
